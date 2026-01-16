@@ -1,8 +1,4 @@
 <?php
-/**
- * Halaman Edit Data Barang
- * Menampilkan form edit dengan data yang sudah ada
- */
 
 // Include konfigurasi database
 require_once 'config.php';

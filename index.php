@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Halaman Utama - CRUD Lengkap Sistem Inventaris Barang
- * Fitur: Create, Read, Update, Delete dengan tampilan modern
- */
-
 // Include konfigurasi database
 require_once 'config.php';
 
@@ -38,7 +32,7 @@ $message = isset($_GET['message']) ? urldecode($_GET['message']) : '';
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="index.php">
-                <i class="bi bi-box-seam-fill"></i> Inventaris Batang
+                <i class="bi bi-box-seam-fill"></i> Inventaris Barang
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>

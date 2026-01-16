@@ -1,15 +1,4 @@
 <?php
-/**
- * File Proses Hapus Data Barang
- * Menggunakan Prepared Statements untuk Keamanan Level 3
- * 
- * KEAMANAN:
- * - Prepared Statements mencegah SQL Injection
- * - Validasi ID sebelum delete
- * - Verifikasi keberadaan data sebelum dihapus
- * - Tidak ada soft delete (permanent deletion)
- */
-
 // Include konfigurasi database
 require_once 'config.php';
 
@@ -61,22 +50,6 @@ mysqli_stmt_close($check_stmt);
 // HAPUS DATA DENGAN PREPARED STATEMENTS (Level 3 Security)
 // ======================================================
 
-/**
- * PENJELASAN PREPARED STATEMENTS UNTUK DELETE:
- * 
- * DELETE dengan Prepared Statements memastikan:
- * 1. WHERE clause aman dari SQL Injection
- * 2. Hanya data dengan ID spesifik yang dihapus
- * 3. Tidak ada risiko menghapus semua data (jika WHERE dimanipulasi)
- * 
- * Metode Lama (BAHAYA):
- * DELETE FROM barang WHERE id = '$id'
- * Jika $id = "1 OR 1=1" → SEMUA data terhapus!
- * 
- * Metode Baru (AMAN):
- * DELETE FROM barang WHERE id = ?
- * Parameter binding memastikan hanya integer yang valid
- */
 
 // Step 1: Buat prepared statement
 $stmt = mysqli_prepare($conn, "DELETE FROM barang WHERE id = ?");
@@ -120,28 +93,4 @@ if ($success) {
     header("Location: index.php?status=error&message=" . urlencode("Gagal menghapus data"));
     exit();
 }
-
-/**
- * CATATAN UNTUK PRESENTASI VIDEO:
- * 
- * 1. KEAMANAN DELETE:
- *    - Tunjukkan bahwa DELETE juga menggunakan Prepared Statements
- *    - Jelaskan bahaya SQL Injection pada DELETE (bisa hapus semua data)
- *    - Demo: coba manipulasi ID di URL → sistem menolak
- * 
- * 2. USER EXPERIENCE:
- *    - Modal konfirmasi sebelum hapus (sudah ada di index.php)
- *    - Notifikasi sukses/error setelah hapus
- *    - Tampilkan nama barang yang dihapus di notifikasi
- * 
- * 3. BEST PRACTICES:
- *    - Verifikasi data ada sebelum dihapus
- *    - Log error untuk debugging (tidak ditampilkan ke user)
- *    - Gunakan affected_rows untuk memastikan data terhapus
- * 
- * 4. ALTERNATIF SOFT DELETE (Opsional untuk pengembangan):
- *    - Tambah kolom "deleted_at" di tabel
- *    - UPDATE deleted_at = NOW() WHERE id = ?
- *    - Data tidak benar-benar dihapus, bisa di-restore
- */
 ?>

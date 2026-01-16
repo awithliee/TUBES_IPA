@@ -1,13 +1,4 @@
 <?php
-/**
- * File Proses Update Data Barang
- * Menggunakan Prepared Statements untuk Keamanan Level 3
- * 
- * KEAMANAN:
- * - Prepared Statements mencegah SQL Injection
- * - Validasi server-side untuk semua input
- * - Verifikasi ID sebelum update
- */
 
 // Include konfigurasi database
 require_once 'config.php';
