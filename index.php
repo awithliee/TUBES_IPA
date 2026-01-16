@@ -32,7 +32,7 @@ $message = isset($_GET['message']) ? urldecode($_GET['message']) : '';
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="index.php">
-                <i class="bi bi-box-seam-fill"></i> Inventaris Barang
+                <i class="bi bi-box-seam-fill"></i> Inventaris Barang Dagangan
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
