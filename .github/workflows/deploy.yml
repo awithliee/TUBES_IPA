@@ -1,0 +1,25 @@
+name: Deploy Otomatis
+
+on:
+  push:
+    branches:
+      - main  # Pastikan branch di GitHub Anda memang bernama 'main'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Ambil kode terbaru dari GitHub
+        uses: actions/checkout@v4
+
+      - name: Copy file ke folder Web Server
+        run: |
+          sudo cp -R * /var/www/inventaris/
+          sudo chown -R www-data:www-data /var/www/inventaris
+          sudo chmod -R 755 /var/www/inventaris
+
+      - name: Restart Service
+        run: |
+          sudo systemctl restart nginx
+          sudo systemctl restart php8.4-fpm
